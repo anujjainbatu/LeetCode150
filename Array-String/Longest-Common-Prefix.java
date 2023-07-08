@@ -1,17 +1,20 @@
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         StringBuilder result = new StringBuilder();
-        char temp = strs[0].charAt(0);
-        int i = 0;
-        while (i < strs.length) {
-            if (temp != strs[i].charAt(0)) {
-                break;
+        Arrays.sort(strs);
+        /*If the array is sorted alphabetically then you can assume that the 
+        first element of the array and the last element of the array will 
+        have most different prefixes of all*/
+        String first = strs[0];
+        String last = strs[strs.length-1];
+        
+        for (int i = 0; i < Math.min(first.length(), last.length()); i++) {
+            if (first.charAt(i) != last.charAt(i)) {
+                return result.toString();
             }
-            i++;
+            result.append(first.charAt(i));
         }
-        if (i == strs.length) {
-            result.append(temp);
-        }
+        
         return result.toString();
     }
 }
